@@ -1,0 +1,4 @@
+npx create-expo-app@latest calculadora --template blank
+cd calculadora
+
+npx expo start --android
