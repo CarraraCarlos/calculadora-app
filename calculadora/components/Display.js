@@ -1,52 +1,56 @@
-import { ImageBackground, StyleSheet, Text, View } from 'react-native'
 import React from 'react'
-import { setStatusBarBackgroundColor } from 'expo-status-bar'
-import { themes } from '../theme/token.js'
+import { StyleSheet, Text, View } from 'react-native'
 
-export default function Display() {
+export default function Display({ theme, expression, value }) {
   return (
     <View
-    styles={[
+      style={[
         styles.wrap,
         {
-            BackgroundColor: themes.card,
-            borderColor: themes.stroke,
-            shadowColor: themes.shadowDark,
+          backgroundColor: theme.card,
+          borderColor: theme.stroke,
+          shadowColor: theme.shadowDark,
         }
-    ]}
-  >
-      <Text
-      numberOfLines={1}
-      style={[styles.expression, { color: themes.textDim }]}
+      ]}
+    >
+      <Text 
+        numberOfLines={1}
+        style={[styles.expression, { color: theme.textDim }]}
       >
         {expression}
       </Text>
-      
-      <Text
-      numberOfLines={1}
-      style={[styles.value, { color: themes.text }]}
+      <Text 
+        numberOfLines={1}
+        style={[styles.value, { color: theme.text }]}
       >
         {value}
-      
-      
       </Text>
     </View>
-    
   )
 }
 
 const styles = StyleSheet.create({
-    wrap: {
-        borderWidth: 1,
-        borderRadius: 26,
-        paddingHorizontal: 18,
-        paddingTop: 18,
-        paddingBottom: 14,
-        marginBottom: 18,
-        shadowOpacity: 0.35,
-        shadowRadius: 22,
-        shadowOffset: { width: 0, heigt: 14},
-        elevation: 9,
-
-    }
+  wrap: {
+    borderWidth: 1,
+    borderRadius: 26,
+    paddingHorizontal: 18,
+    paddingTop: 18,
+    paddingBottom: 14,
+    marginBottom: 18,
+    shadowOpacity: 0.35,
+    shadowRadius: 22,
+    shadowOffset: { width: 0, height: 14},
+    elevation: 8
+  },
+  expression: {
+    fontSize: 14,
+    letterSpacing: 0.2,
+    textAlign: 'right',
+    marginBottom: 6,
+  },
+  value: {
+    fontSize: 56,
+    fontWeight: "600",
+    textAlign: 'right'
+  }
 })

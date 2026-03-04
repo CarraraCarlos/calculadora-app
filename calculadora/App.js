@@ -1,9 +1,9 @@
 import React, { useMemo, useState } from 'react';
 import { StatusBar, StyleSheet, Text, Pressable, View } from 'react-native';
 
-import CalcButton from "./components/CalcButton.js";
-import Display from "./components/Display.js";
-import { themes } from "./theme/token.js";
+import CalcButton from "./components/CalcButton";
+import Display from "./components/Display";
+import { themes } from "./theme/token";
 import { createEngine } from "./utils/calcEngine";
 
 export default function App() {
@@ -12,30 +12,42 @@ export default function App() {
 
   return (
     <View style={[styles.container, {backgroundColor: theme.bg}]}>
-      <StatusBar barStyle={mode === "dark" ? "ligt-content" : "dark-content"} />
-     
-     <View style={styles.topBar}>
-       <Pressable onPress={() => setMode((m) => (m === "dark" ? "light" : "dark"))}
-        style={({pressed}) => [
-          styles.toggle,
-          {
-            backgroundColor : theme.card,
-            opacity: pressed ? 0.75 : 1,
-            borderColor : theme.stroke
-          }
-        ]}
-      >
-        <Text style={{ color: theme.text, fontWeight: "700"}}>
-          {mode === "dark" ? "Escuro" : "Claro"}
-        </Text>
-       </Pressable>
-     </View>
+      <StatusBar barStyle={mode === "dark" ? "light-content" : "dark-content"} />
 
-     <Display
-       theme={theme}
-       expression={""}
-       value={0} 
-     />
+      <View style={styles.topBar}>
+        <Pressable
+          onPress={() => setMode((m) => (m === "dark" ? "light" : "dark"))}
+          style={({pressed}) => [
+            styles.toggle,
+            {
+              backgroundColor : theme.card,
+              opacity: pressed ? 0.75 : 1,
+              borderColor: theme.stroke
+            }
+          ]}
+        >
+          <Text style={{ color: theme.text, fontWeight: "700"}}>
+            {mode === "dark" ? "Escuro" : "Claro"}
+          </Text>
+        </Pressable>
+      </View>
+
+      <Display
+        theme={theme}
+        expression={"100+"}
+        value={0}
+      />
+
+      <View style={styles.pad}>
+        {/* Linha 1 */}
+        <View style={styles.row}>
+          <CalcButton theme={theme} label="C" variant="neutral" onPress={() => {}} />
+          <CalcButton theme={theme} label="+/-" variant="neutral" onPress={() => {}} />
+          <CalcButton theme={theme} label="%" variant="neutral" onPress={() => {}} />
+          <CalcButton theme={theme} label="÷" variant="op" onPress={() => {}} />
+        </View>
+
+      </View>
 
     </View>
   );
