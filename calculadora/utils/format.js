@@ -27,3 +27,4 @@ export function fixFloat(n) {
   // reduz erro de ponto flutuante
   return Math.round((n + Number.EPSILON) * 1e12) / 1e12;
 }
+
